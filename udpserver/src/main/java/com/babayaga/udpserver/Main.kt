@@ -6,8 +6,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-class Main {}
-
 fun main(args: Array<String>) {
     when {
         args.size < 2 -> {

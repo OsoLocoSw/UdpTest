@@ -1,0 +1,21 @@
+plugins {
+    id("java-library")
+    alias(libs.plugins.jetbrains.kotlin.jvm)
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
+    }
+}
+
+val COROUTINE_VERSION get() = "1.10.2"
+
+dependencies {
+    implementation(project(":lib"))
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINE_VERSION")
+    implementation("org.slf4j:slf4j-simple:2.0.17")
+}

@@ -2,6 +2,8 @@ package com.babayaga.udpclient
 
 import com.babayaga.lib.Client
 
+class Main {}
+
 fun main(args: Array<String>) {
     when {
         args.size < 3 -> {

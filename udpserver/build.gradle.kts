@@ -1,5 +1,6 @@
 plugins {
-    id("java-library")
+    id("java")
+    id("application")
     alias(libs.plugins.jetbrains.kotlin.jvm)
 }
 java {
@@ -18,4 +19,9 @@ dependencies {
     implementation(project(":lib"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINE_VERSION")
     implementation(libs.slf4j.simple)
+}
+
+application {
+    mainModule = "com.babayaga.udpserver"
+    mainClass = "com.babayaga.udpserver.Main"
 }

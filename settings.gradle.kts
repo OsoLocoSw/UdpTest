@@ -23,3 +23,4 @@ rootProject.name = "UdpTest"
 include(":app")
 include(":lib")
 include(":udpserver")
+include(":udpclient")

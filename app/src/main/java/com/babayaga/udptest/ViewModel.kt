@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
+import com.babayaga.lib.Client
 import com.babayaga.lib.Server
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,10 +18,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import java.io.IOException
-import java.net.DatagramPacket
-import java.net.DatagramSocket
-import java.net.InetAddress
 
 class ViewModel(private val context: Context) {
     enum class ListenState {
@@ -175,25 +172,23 @@ class ViewModel(private val context: Context) {
     fun send() {
         if (sendState.value == SendState.CAN_SEND) {
             CoroutineScope(supervisor).launch(Dispatchers.IO) {
-                try {
-                    // Send the udp
-                    val toSend = sendMessage.value.trim().toByteArray()
-                    val destination = InetAddress.getByName(sendHost.value)
-                    sendPort.value.toIntOrNull()?.let { port ->
-                        val packet = DatagramPacket(toSend, toSend.size, destination, port)
-                        val socket = sendSourcePort.value.toIntOrNull()?.let { srcPort ->
-                            DatagramSocket(srcPort)
-                        } ?: run {
-                            DatagramSocket()
-                        }
-                        socket.send(packet)
-                        socket.close()
-                        Log.i("UDP Send", "Send packet to $destination : $port")
-                        toast("Sent packet", Toast.LENGTH_SHORT)
+                sendPort.value.toIntOrNull()?.let { port ->
+                    if (Client.send(
+                            message = sendMessage.value.trim(),
+                            destHost = sendHost.value.trim(),
+                            destPort = port,
+                            srcPort = sendSourcePort.value.toIntOrNull()
+                        )
+                    ) {
+                        Log.i("UDP SEND", "Sent the message")
+                        toast("Sent the message", Toast.LENGTH_SHORT)
+                    } else {
+                        Log.e("UDP SEND", "Failed to send message")
+                        toast("Failed to send the message", Toast.LENGTH_LONG)
                     }
-                } catch (e: IOException) {
-                    Log.e("UDP Send", "Failed to send packet: $e")
-                    toast("Failed to send packet", Toast.LENGTH_LONG)
+                } ?: run {
+                    Log.e("UDP SEND", "Failed to send message, invalid port")
+                    toast("Failed to send the message, invalid port", Toast.LENGTH_LONG)
                 }
             }
         }

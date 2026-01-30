@@ -1,6 +1,6 @@
-package com.babayaga.udpserver
+package com.marples.udpserver
 
-import com.babayaga.lib.Server
+import com.marples.lib.Server
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

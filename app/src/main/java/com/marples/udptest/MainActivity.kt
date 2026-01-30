@@ -1,4 +1,4 @@
-package com.babayaga.udptest
+package com.marples.udptest
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -29,7 +29,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.babayaga.udptest.ui.theme.UdpTestTheme
+import com.marples.udptest.ui.theme.UdpTestTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

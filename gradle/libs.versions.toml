@@ -9,6 +9,9 @@ lifecycleRuntimeKtx = "2.10.0"
 activityCompose = "1.8.0"
 composeBom = "2024.09.00"
 appcompat = "1.6.1"
+log4jApi = "2.23.1"
+log4jCore = "2.23.1"
+log4jSlf4j2Impl = "2.23.1"
 material = "1.10.0"
 jetbrainsKotlinJvm = "2.0.21"
 slf4jHandroid = "2.0.0"
@@ -30,6 +33,9 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4jApi" }
+log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4jCore" }
+log4j-slf4j2-impl = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version.ref = "log4jSlf4j2Impl" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 slf4j-handroid = { module = "com.gitlab.mvysny.slf4j:slf4j-handroid", version.ref = "slf4jHandroid" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4jSimple" }

@@ -1,4 +1,4 @@
-package com.babayaga.udptest.ui.theme
+package com.marples.udptest.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

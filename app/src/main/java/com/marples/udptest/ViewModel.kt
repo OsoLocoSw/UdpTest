@@ -1,4 +1,4 @@
-package com.babayaga.udptest
+package com.marples.udptest
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,8 +6,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import com.babayaga.lib.Client
-import com.babayaga.lib.Server
+import com.marples.lib.Client
+import com.marples.lib.Server
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

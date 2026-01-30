@@ -1,4 +1,4 @@
-package com.babayaga.lib
+package com.marples.lib
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

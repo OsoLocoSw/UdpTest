@@ -24,14 +24,14 @@ dependencies {
 }
 
 application {
-    mainModule = "com.babayaga.udpclient"
-    mainClass = "com.babayaga.udpclient.MainKt"
+    mainModule = "com.marples.udpclient"
+    mainClass = "com.marples.udpclient.MainKt"
 }
 
 tasks.withType<Jar> {
     // Otherwise you'll get a "No main manifest attribute" error
     manifest {
-        attributes["Main-Class"] = "com.babayaga.udpclient.MainKt"
+        attributes["Main-Class"] = "com.marples.udpclient.MainKt"
     }
 
     // To avoid the duplicate handling strategy error

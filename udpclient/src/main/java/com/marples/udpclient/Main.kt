@@ -1,6 +1,6 @@
-package com.babayaga.udpclient
+package com.marples.udpclient
 
-import com.babayaga.lib.Client
+import com.marples.lib.Client
 
 fun main(args: Array<String>) {
     when {

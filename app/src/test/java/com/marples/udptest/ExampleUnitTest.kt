@@ -1,4 +1,4 @@
-package com.babayaga.udptest
+package com.marples.udptest
 
 import org.junit.Test
 

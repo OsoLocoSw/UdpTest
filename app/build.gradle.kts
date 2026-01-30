@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.babayaga.udptest"
+    namespace = "com.marples.udptest"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.babayaga.udptest"
+        applicationId = "com.marples.udptest"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

@@ -1,0 +1,47 @@
+services:
+  udpserver1:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+        tag: "udpserver-1"
+    container_name: udpserver-1
+    image: localhost/udpserver:latest
+    restart: unless-stopped
+#    command: ["java", "-Dorg.slf4j.simpleLogger.defaultLogLevel=warn", "-jar", "udpserver.jar", "0.0.0.0", "12345"]
+    command: ["java", "-jar", "udpserver.jar", "0.0.0.0", "12345"]
+    networks:
+      - dodd
+    ports:
+      - "11000:12345/udp"
+  udpserver2:
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "5"
+        tag: "udpserver-2"
+    container_name: udpserver-2
+    image: localhost/udpserver:latest
+    restart: unless-stopped
+#    command: ["java", "-Dorg.slf4j.simpleLogger.defaultLogLevel=warn", "-jar", "udpserver.jar", "0.0.0.0", "12345"]
+    command: ["java", "-jar", "udpserver.jar", "0.0.0.0", "12345"]
+    networks:
+      - dodd
+    ports:
+      - "12000:12345/udp"
+#  udpclient:
+#    logging:
+#      options:
+#        max-size: "10m"
+#        max-file: "5"
+#        tag: "udpclient"
+#    container_name: udpclient
+#    image: localhost/udpclient:latest
+#    restart: no
+#    command: ["To hell with Georgia"]
+#    networks:
+#      - dodd
+networks:
+  dodd:
+    name: dodd
+#    driver: bridge

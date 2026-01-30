@@ -1,0 +1,10 @@
+FROM alpine/java:11.0.24
+
+WORKDIR /app
+RUN chmod 777 .
+
+RUN apk update && apk add --no-cache bash && apk add curl
+COPY udpclient/build/libs/udpclient.jar udpclient.jar
+
+# ENTRYPOINT ["java", "-jar", "udpclient.jar"]
+CMD /bin/bash

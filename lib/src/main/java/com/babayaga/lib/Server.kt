@@ -11,6 +11,7 @@ import java.io.IOException
 import java.net.BindException
 import java.net.DatagramPacket
 import java.net.DatagramSocket
+import java.net.SocketException
 import java.net.SocketTimeoutException
 import java.time.Instant
 
@@ -38,7 +39,7 @@ class Server {
 
         if (port > 0 && job == null) {
             job = CoroutineScope(supervisor).launch(Dispatchers.IO) {
-                logger.info("Started server job")
+                logger.debug("Started server job")
                 try {
                     DatagramSocket(port).let { aSocket ->
                         _listening.value = true
@@ -49,11 +50,11 @@ class Server {
                         val packet = DatagramPacket(rxBuf, rxBuf.size)
 
                         try {
-                            logger.info("Started listening")
+                            logger.debug("Started listening")
                             do {
                                 try {
                                     aSocket.receive(packet)
-                                    logger.info("Received packet length ${packet.length}")
+                                    logger.trace("Received packet length ${packet.length}")
                                     val received = String(rxBuf, 0, packet.length)
                                     val senderHost = packet.address.hostAddress ?: ""
                                     val senderPort = packet.port
@@ -67,7 +68,10 @@ class Server {
                                 }
                             } while (listening.value)
 
-                            logger.info("Stopped listening")
+                            logger.debug("Stopped listening")
+                        } catch (e: SocketException) {
+                            _listening.value = false
+                            logger.debug("SocketException occurred while listening: $e")
                         } catch (e: IOException) {
                             _listening.value = false
                             logger.warn("Exception occurred while listening: $e")
@@ -75,7 +79,7 @@ class Server {
                             try {
                                 aSocket.close()
                                 socket = null
-                                logger.info("Closed the listening socket")
+                                logger.debug("Closed the listening socket")
                             } catch (e: IOException) {
                                 logger.warn("Exception occurred while stopping the socket: $e")
                             }
@@ -104,7 +108,7 @@ class Server {
             socket?.close()
             job?.cancel()
             job = null
-            logger.info("Stopped the server job")
+            logger.debug("Stopped the server job")
         } else {
             logger.warn("Did not attempt to stop the server, if is not running")
         }

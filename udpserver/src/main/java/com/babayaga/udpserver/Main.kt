@@ -27,16 +27,19 @@ fun main(args: Array<String>) {
                 val server = Server()
                 server.start(args[0], port, supervisor)
 
+                var exit = false
                 val listenerJob = CoroutineScope(supervisor).launch(Dispatchers.IO) {
                     server.lastMessage.collect { lastMessage ->
                         lastMessage?.let { quad ->
+                            exit = ("HALT" == quad.first)
                             println("(${quad.second}:${quad.third}) ${quad.first}")
                         }
                     }
                 }
-                println("Press any key to exit")
-                readln()
 
+                while (!exit) {
+                    Thread.sleep(1000)
+                }
                 listenerJob.cancel()
                 server.stop()
                 println("Exiting UDP Server")

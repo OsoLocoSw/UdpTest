@@ -1,6 +1,6 @@
-package com.marples.udpserver
+package com.osoloco.udpserver
 
-import com.marples.lib.Server
+import com.osoloco.lib.Server
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

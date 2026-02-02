@@ -1,4 +1,4 @@
-package com.marples.udptest
+package com.osoloco.udptest
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,8 +6,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import com.marples.lib.Client
-import com.marples.lib.Server
+import com.osoloco.lib.Client
+import com.osoloco.lib.Server
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

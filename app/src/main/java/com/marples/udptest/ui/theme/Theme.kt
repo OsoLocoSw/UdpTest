@@ -1,4 +1,4 @@
-package com.marples.udptest.ui.theme
+package com.osoloco.udptest.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

@@ -1,4 +1,4 @@
-package com.marples.lib
+package com.osoloco.lib
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

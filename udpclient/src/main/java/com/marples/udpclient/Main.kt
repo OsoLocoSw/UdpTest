@@ -1,6 +1,6 @@
-package com.marples.udpclient
+package com.osoloco.udpclient
 
-import com.marples.lib.Client
+import com.osoloco.lib.Client
 
 fun main(args: Array<String>) {
     when {

@@ -31,14 +31,14 @@ dependencies {
 }
 
 application {
-    mainModule = "com.marples.udpserver"
-    mainClass = "com.marples.udpserver.MainKt"
+    mainModule = "com.osoloco.udpserver"
+    mainClass = "com.osoloco.udpserver.MainKt"
 }
 
 tasks.withType<Jar> {
     // Otherwise you'll get a "No main manifest attribute" error
     manifest {
-        attributes["Main-Class"] = "com.marples.udpserver.MainKt"
+        attributes["Main-Class"] = "com.osoloco.udpserver.MainKt"
     }
 
     // To avoid the duplicate handling strategy error

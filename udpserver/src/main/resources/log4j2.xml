@@ -27,13 +27,13 @@
     <!-- Loggers control which messages are logged and at what level -->
     <Loggers>
         <!-- A specific logger for a package, set to a certain level (e.g., warn) -->
-        <Logger name="com.marples" level="warn">
+        <Logger name="com.osoloco" level="warn">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="FileAppender"/>
         </Logger>
 
         <!-- A specific logger for a package, set to a certain level (e.g., INFO) -->
-        <Logger name="com.marples" level="info">
+        <Logger name="com.osoloco" level="info">
             <AppenderRef ref="FileAppender"/>
         </Logger>
 

@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.marples.udptest"
+    namespace = "com.osoloco.udptest"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.marples.udptest"
+        applicationId = "com.osoloco.udptest"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

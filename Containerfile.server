@@ -4,8 +4,11 @@ WORKDIR /app
 RUN chmod 777 .
 
 RUN apk update && apk add --no-cache bash && apk add curl
+RUN apk add iptables
 COPY udpserver/build/libs/udpserver.jar udpserver.jar
 COPY udpclient/build/libs/udpclient.jar udpclient.jar
+
+EXPOSE 12345/udp
 
 # ENTRYPOINT ["java", "-jar", "udpserver.jar", "0.0.0.0", "12345"]
 CMD /bin/bash

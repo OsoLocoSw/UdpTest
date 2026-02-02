@@ -13,7 +13,9 @@ services:
     networks:
       - dodd
     ports:
-      - "11000:12345/udp"
+      - 11000:12345/udp
+    cap_add:
+      - NET_ADMIN
   udpserver2:
     logging:
       options:
@@ -28,19 +30,9 @@ services:
     networks:
       - dodd
     ports:
-      - "12000:12345/udp"
-#  udpclient:
-#    logging:
-#      options:
-#        max-size: "10m"
-#        max-file: "5"
-#        tag: "udpclient"
-#    container_name: udpclient
-#    image: localhost/udpclient:latest
-#    restart: no
-#    command: ["To hell with Georgia"]
-#    networks:
-#      - dodd
+      - 12000:12345/udp
+    cap_add:
+      - NET_ADMIN
 networks:
   dodd:
     name: dodd

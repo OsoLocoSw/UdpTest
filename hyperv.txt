@@ -1,0 +1,16 @@
+podman machine stop
+XX podman machine set --user-mode-networking=true
+podman machine start
+
+
+$hvc = (Get-NetFirewallHyperVVMCreator).VMCreatorId
+Get-NetFirewallHyperVVMSetting -PolicyStore ActiveStore -Name $hvc
+Set-NetFirewallHyperVVMSetting -Name $hvc -Enabled true
+New-NetFirewallHyperVRule -Name <RuleName> -DisplayName "<Stuff>" -Direction Inbound -VMCreatorId $hvc -Protocol UDP -LocalPorts <Ports>
+Get-NetFirewallHyperVRule -VMCreatorId $hvc
+
+
+cat ~/.wslconfig
+# [wsl2]
+# networkingMode=Mirrored
+# firewall=true

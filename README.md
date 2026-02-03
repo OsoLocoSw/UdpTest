@@ -55,13 +55,13 @@ a development friendly system, it is less difficult to be successful.
         2. Get the HyperV creator id: '$hvc = (Get-NetFirewallHyperVVMCreator).VMCreatorId'
             - Should be '{40E0AC32-46A5-438A-A0B2-2B479E8F2E90}' but may change in the future so...
         3. Get the current HyperV settings: 'Get-NetFirewallHyperVVMSetting -PolicyStore ActiveStore -Name $hvc'
-            - Results should look something like:
-              Name                  : {40E0AC32-46A5-438A-A0B2-2B479E8F2E90}
-              Enabled               : **True**
-              DefaultInboundAction  : **Block**
-              DefaultOutboundAction : Allow
-              LoopbackEnabled       : True
-              AllowHostPolicyMerge  : True
+            - Results should look something like:<br>
+              Name                  : {40E0AC32-46A5-438A-A0B2-2B479E8F2E90}<br>
+              Enabled               : **True**<br>
+              DefaultInboundAction  : **Block**<br>
+              DefaultOutboundAction : Allow<br>
+              LoopbackEnabled       : True<br>
+              AllowHostPolicyMerge  : True<br>
             - If the _Enabled_ flag is _False_ then enable it in the next step
             - If the _DefaultInboundAction_ is _Allow_ then consider Blocking them
         4. (Suggested) Enable the HyperV firewall: 'Set-NetFirewallHyperVVMSetting -Name $hvc -Enabled true'
@@ -73,47 +73,47 @@ a development friendly system, it is less difficult to be successful.
                 - display name = String to display for rule
         7. Verify the rules were created: 'Get-NetFirewallHyperVRule -VMCreatorId $hvc'
             - Find the rule by Name or DisplayName to verify it was added 
-            - Results should look something like:
-              Name                  : WslCore-Allow-Inbound-ICMPv4-1-40e0ac32-46a5-438a-a0b2-2b479e8f2e90
-              DisplayName           : WslCore Inbound ICMPv4 Default Allow Rule
-              Direction             : Inbound
-              VMCreatorId           : {40E0AC32-46A5-438A-A0B2-2B479E8F2E90}
-              Protocol              : ICMPv4
-              LocalAddresses        : Any
-              LocalPorts            : {3, 11}
-              RemoteAddresses       : Any
-              RemotePorts           : Any
-              Action                : Allow
-              Enabled               : True
-              EnforcementStatus     : OK
-              PolicyStoreSourceType : Local
-              Profiles              : Any
-              PortStatuses          : << SNIP >>
-
-              Name                  : WslCore-Allow-Inbound-ICMPv6-1-40e0ac32-46a5-438a-a0b2-2b479e8f2e90
-              DisplayName           : WslCore Inbound ICMPv6 Default Allow Rule
-              Direction             : Inbound
-              VMCreatorId           : {40E0AC32-46A5-438A-A0B2-2B479E8F2E90}
-              Protocol              : ICMPv6
-              LocalAddresses        : Any
-              LocalPorts            : {135, 136, 1, 3}
-              RemoteAddresses       : Any
-              RemotePorts           : Any
-              Action                : Allow
-              Enabled               : True
-              EnforcementStatus     : OK
-              PolicyStoreSourceType : Local
-              Profiles              : Any
-              PortStatuses          : << SNIP >>
+            - Results should look something like:<br>
+              Name                  : WslCore-Allow-Inbound-ICMPv4-1-40e0ac32-46a5-438a-a0b2-2b479e8f2e90<br>
+              DisplayName           : WslCore Inbound ICMPv4 Default Allow Rule<br>
+              Direction             : Inbound<br>
+              VMCreatorId           : {40E0AC32-46A5-438A-A0B2-2B479E8F2E90}<br>
+              Protocol              : ICMPv4<br>
+              LocalAddresses        : Any<br>
+              LocalPorts            : {3, 11}<br>
+              RemoteAddresses       : Any<br>
+              RemotePorts           : Any<br>
+              Action                : Allow<br>
+              Enabled               : True<br>
+              EnforcementStatus     : OK<br>
+              PolicyStoreSourceType : Local<br>
+              Profiles              : Any<br>
+              PortStatuses          : << SNIP >><br>
+              <br>
+              Name                  : WslCore-Allow-Inbound-ICMPv6-1-40e0ac32-46a5-438a-a0b2-2b479e8f2e90<br>
+              DisplayName           : WslCore Inbound ICMPv6 Default Allow Rule<br>
+              Direction             : Inbound<br>
+              VMCreatorId           : {40E0AC32-46A5-438A-A0B2-2B479E8F2E90}<br>
+              Protocol              : ICMPv6<br>
+              LocalAddresses        : Any<br>
+              LocalPorts            : {135, 136, 1, 3}<br>
+              RemoteAddresses       : Any<br>
+              RemotePorts           : Any<br>
+              Action                : Allow<br>
+              Enabled               : True<br>
+              EnforcementStatus     : OK<br>
+              PolicyStoreSourceType : Local<br>
+              Profiles              : Any<br>
+              PortStatuses          : << SNIP >><br>
         8. Setup the Windows Subsystem for Linux (WSL) network
             1. Edit the ~/.wslconfig file
                 - Must do this as the user that runs the WSL
                 - Set the networking mode to 'Mirrored'
                 - Set the firewall to 'true'
-                - The file will look something like:
-                  [wsl2]
-                  networkingMode=Mirrored
-                  firewall=true
+                - The file will look something like:<br>
+                  [wsl2]<br>
+                  networkingMode=Mirrored<br>
+                  firewall=true<br>
             2. Restart WSL to have the file take effect
                 1. Stop WSL: 'podman machine stop' 
                 2. Start WSL: 'podman machine start'

@@ -5,15 +5,25 @@
         <!-- Console Appender writes to the console (System.out) -->
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
             <!-- PatternLayout defines the log message format -->
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <!--
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level - [%t] - %logger{36} - %msg%n"/>
+            -->
+            <MarkerPatternSelector defaultPattern="[%-5level] %c{1.} %msg%n">
+                <PatternMatch key="MARKER" pattern="[%-5level] %c{1.} ====== %C{1.}.%M:%L %msg ======%n"/>
+            </MarkerPatternSelector>
         </Console>
 
         <!-- Rolling File Appender writes to a file with rolling policy -->
-        <RollingFile name="FileAppender" fileName="./udp_server.log"
+        <RollingFile name="FileAppender" fileName="./udp_server_log4j.log"
             filePattern="logs/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <MarkerPatternSelector defaultPattern="[%-5level] %c{1.} %msg%n">
+                <PatternMatch key="MARKER" pattern="[%-5level] %c{1.} ====== %C{1.}.%M:%L %msg ======%n"/>
+            </MarkerPatternSelector>
+<!--
             <PatternLayout>
                 <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
             </PatternLayout>
+            -->
             <Policies>
                 <!-- Roll over daily -->
                 <TimeBasedTriggeringPolicy />
@@ -26,21 +36,25 @@
 
     <!-- Loggers control which messages are logged and at what level -->
     <Loggers>
-        <!-- A specific logger for a package, set to a certain level (e.g., warn) -->
-        <Logger name="com.osoloco" level="warn">
-            <AppenderRef ref="ConsoleAppender"/>
-            <AppenderRef ref="FileAppender"/>
-        </Logger>
-
-        <!-- A specific logger for a package, set to a certain level (e.g., INFO) -->
-        <Logger name="com.osoloco" level="info">
-            <AppenderRef ref="FileAppender"/>
-        </Logger>
-
         <!-- The Root logger catches all messages not caught by other loggers -->
         <!-- The 'level' attribute (e.g., 'error') sets the default minimum severity -->
-        <Root level="error">
+        <Root level="info">
             <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
         </Root>
+
+        <!-- A specific logger for a package, set to a certain level (e.g., warn) -->
+<!--
+        <Logger name="some-logger" level="trace">
+            <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+        -->
+
+        <!-- A specific logger for a package, set to a certain level (e.g., INFO) -->
+        <Logger name="UDP SERVER RX" level="debug">
+            <AppenderRef ref="FileAppender"/>
+        </Logger>
+
     </Loggers>
 </Configuration>

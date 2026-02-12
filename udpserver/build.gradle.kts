@@ -20,14 +20,14 @@ dependencies {
     implementation(project(":lib"))
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$COROUTINE_VERSION")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION")
-    implementation(libs.slf4j.simple)
+//    implementation(libs.slf4j.simple)
 
     // Log4j 2 SLF4J implementation: This connects SLF4J calls to the Log4j 2 backend
-//    implementation (libs.log4j.slf4j2.impl)
-//
-//    // Log4j 2 core and API: The actual logging framework
-//    implementation(libs.log4j.core)
-//    implementation(libs.log4j.api)
+    implementation (libs.log4j.slf4j2.impl)
+
+    // Log4j 2 core and API: The actual logging framework
+    implementation(libs.log4j.core)
+    implementation(libs.log4j.api)
 }
 
 application {

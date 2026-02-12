@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.slf4j.LoggerFactory
+import org.slf4j.MarkerFactory
 import java.io.IOException
 import java.net.BindException
 import java.net.DatagramPacket
@@ -20,6 +21,7 @@ import java.time.Instant
  */
 class Server {
     private val logger = LoggerFactory.getLogger("UDP SERVER RX")
+    private val marker = MarkerFactory.getMarker("MARKER")
     private val _lastMessage = MutableStateFlow<Quadruple<String, String, Int, Long>?>(null)
     val lastMessage = _lastMessage.asStateFlow()
 
@@ -63,6 +65,10 @@ class Server {
                                     _lastMessage.value =
                                         Quadruple(received, senderHost, senderPort, time)
                                     logger.info("Received message '$received' from $senderHost:$senderPort")
+                                    logger.info(
+                                        marker,
+                                        "Received message '$received' from $senderHost:$senderPort"
+                                    )
                                 } catch (ste: SocketTimeoutException) {
                                     logger.trace("Socket receive timeout")
                                 }
